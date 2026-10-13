@@ -1,0 +1,131 @@
+:root {
+  --fondo: #f2f5f3;
+  --papel: #ffffff;
+  --tinta: #1c2a25;
+  --suave: #5a6a63;
+  --linea: #d5ddd9;
+  --vino: #7a1f3d;
+  --vino-tinta: #ffffff;
+  --aji: #d99a1e;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #141b18; --papel: #1b2420; --tinta: #e8eeea; --suave: #9aaba3;
+    --linea: #2b3833; --vino: #e5718f; --vino-tinta: #1a0a10; --aji: #e8b04a;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--fondo); color: var(--tinta);
+  font: 1rem/1.5 var(--sans);
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+}
+a { color: var(--vino); }
+h2, h3, .titulo { font-family: var(--serif); font-weight: 600; line-height: 1.2; }
+h2 { font-size: 1.6rem; margin: 1rem 0 .5rem; }
+h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+main { max-width: 42rem; margin: 0 auto; padding: 0 1rem 1rem; }
+:focus-visible { outline: 3px solid var(--aji); outline-offset: 2px; }
+
+.barra { padding: calc(.75rem + env(safe-area-inset-top, 0px)) 1rem .5rem; max-width: 42rem; margin: 0 auto; }
+.marca { font: 600 1.35rem var(--serif); color: var(--vino); text-decoration: none; letter-spacing: .01em; }
+
+.pestanas {
+  position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: var(--papel);
+  border-top: 1px solid var(--linea); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pestanas a { flex: 1; text-align: center; padding: .85rem 0; color: var(--suave); text-decoration: none; font-weight: 500; }
+.pestanas a[aria-current="page"] { color: var(--vino); box-shadow: inset 0 3px 0 var(--vino); font-weight: 700; }
+
+button, .boton {
+  font: inherit; font-weight: 600; padding: .65rem 1.1rem; min-height: 2.75rem; cursor: pointer;
+  background: var(--vino); color: var(--vino-tinta); border: 2px solid var(--vino); border-radius: .5rem;
+}
+button.sec { background: transparent; color: var(--vino); }
+button.peligro { background: transparent; color: #b3261e; border-color: #b3261e; margin-top: 2rem; }
+@media (prefers-color-scheme: dark) { button.peligro { color: #ff8a80; border-color: #ff8a80; } }
+button.enlace { background: none; border: 0; color: var(--vino); padding: .5rem 0; min-height: 0; text-decoration: underline; }
+button.redondo { width: 2.75rem; padding: 0; font-size: 1.4rem; border-radius: 50%; }
+button:disabled { opacity: .45; cursor: default; }
+.acciones { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0; }
+
+input, select, textarea {
+  font: inherit; color: inherit; background: var(--papel); border: 1px solid var(--linea);
+  border-radius: .5rem; padding: .6rem .7rem; width: 100%; min-height: 2.75rem;
+}
+textarea { resize: vertical; }
+input[type="checkbox"] { width: 1.4rem; min-height: 0; height: 1.4rem; accent-color: var(--vino); }
+
+/* Lista de recetas */
+.busqueda { margin: .5rem 0; }
+.chips { display: flex; gap: .4rem; overflow-x: auto; padding: .25rem 0 .75rem; scrollbar-width: none; }
+.chip { flex: none; background: transparent; color: var(--tinta); border: 1px solid var(--linea); border-radius: 2rem; padding: .35rem .85rem; min-height: 2.25rem; font-weight: 500; }
+.chip.on { background: var(--vino); color: var(--vino-tinta); border-color: var(--vino); }
+.lista { list-style: none; margin: 0; padding: 0; }
+.lista li + li { border-top: 1px solid var(--linea); }
+.fila { display: flex; gap: .9rem; align-items: center; padding: .75rem 0; text-decoration: none; color: inherit; }
+.fila img, .sinfoto { width: 4.5rem; height: 4.5rem; border-radius: .4rem; object-fit: cover; flex: none; }
+.sinfoto { display: grid; place-items: center; background: var(--linea); color: var(--vino); font: 600 1.8rem var(--serif); }
+.fila-texto { display: grid; gap: .1rem; min-width: 0; }
+.fila-titulo { font: 600 1.15rem var(--serif); }
+.fila-meta { color: var(--suave); font-size: .9rem; }
+.fav { color: var(--aji); }
+.flotante {
+  position: fixed; right: 1rem; bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  width: 3.5rem; height: 3.5rem; border-radius: 50%; font-size: 2rem; line-height: 1; padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
+.vacio { padding: 2rem 0; color: var(--suave); }
+.vacio h2 { color: var(--tinta); }
+
+/* Receta */
+.portada { width: 100%; max-height: 18rem; object-fit: cover; border-radius: .5rem; margin-top: .5rem; }
+.titulo { font-size: 2rem; margin: .5rem 0 .25rem; }
+.meta { color: var(--suave); margin: 0; }
+.controles { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; justify-content: space-between; margin-bottom: .75rem; }
+.porciones { display: flex; align-items: center; gap: .75rem; }
+.grande { font: 600 2.2rem/1 var(--serif); color: var(--vino); }
+.unidades { display: grid; gap: .2rem; font-size: .85rem; color: var(--suave); }
+.unidades select { width: auto; }
+.ingredientes { list-style: none; padding: 0; margin: 0 0 1rem; }
+.ingredientes li { padding: .5rem 0; border-bottom: 1px dashed var(--linea); }
+.pasos { padding-left: 1.4rem; }
+.pasos li { margin-bottom: .9rem; padding-left: .3rem; max-width: 65ch; }
+.pasos li::marker { color: var(--vino); font-weight: 700; }
+.notas { white-space: pre-wrap; color: var(--suave); }
+.aviso { color: var(--suave); }
+.error { color: #b3261e; }
+
+/* Formulario */
+.form { display: grid; gap: .9rem; }
+.form label, .pegar { display: grid; gap: .3rem; font-weight: 600; }
+.form small { font-weight: 400; color: var(--suave); }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.previa img { max-width: 12rem; border-radius: .5rem; display: block; margin-bottom: .5rem; }
+
+/* Compras */
+.agregar { display: flex; gap: .5rem; margin: .5rem 0 1rem; }
+.agregar input { flex: 1; }
+.compras { list-style: none; padding: 0; margin: 0 0 1rem; }
+.item { display: flex; gap: .8rem; align-items: center; padding: .7rem 0; border-bottom: 1px solid var(--linea); }
+.item.hecho span { text-decoration: line-through; color: var(--suave); }
+
+/* Modo cocina */
+.cocina-main { max-width: 48rem; padding-top: env(safe-area-inset-top, 0px); }
+.cocina header { display: flex; justify-content: space-between; align-items: center; }
+.progreso { color: var(--suave); margin: 0; }
+.paso-grande { font: 500 clamp(1.6rem, 6vw, 2.4rem)/1.35 var(--serif); margin: 2rem 0; min-height: 40vh; }
+.navpasos { display: flex; gap: .75rem; }
+.navpasos button { flex: 1; min-height: 3.5rem; font-size: 1.15rem; }
+.temporizador { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin: 1rem 0; }
+.temporizador input { width: 5rem; display: inline-block; }
+.tiempo { font: 600 2.4rem var(--serif); color: var(--vino); font-variant-numeric: tabular-nums; }
+.listo { color: var(--aji); font-size: 1.3rem; }
+details { margin-top: 1.5rem; }
+summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
